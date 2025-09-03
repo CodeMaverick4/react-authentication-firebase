@@ -4,6 +4,8 @@ import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import { useContext } from 'react';
+import { tokenContext } from './context/tokenContext';
 
 function App() {
   return (

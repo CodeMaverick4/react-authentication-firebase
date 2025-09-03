@@ -4,6 +4,7 @@ import { auth } from "../../firebase";
 
 import classes from './AuthForm.module.css';
 import { tokenContext } from '../../context/tokenContext';
+import { useNavigate } from 'react-router-dom';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,6 +12,7 @@ const AuthForm = () => {
   const { accessToken, setAccessToken } = useContext(tokenContext);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate = useNavigate();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -29,6 +31,7 @@ const AuthForm = () => {
         setAccessToken(userCredential.user.accessToken);
         alert("Login successfull...");
         setIsLoading(false);
+        navigate('/profile')
         return
       }
       else {
