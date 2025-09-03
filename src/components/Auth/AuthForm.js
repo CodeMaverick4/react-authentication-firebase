@@ -27,8 +27,10 @@ const AuthForm = () => {
       setIsLoading(true);
       if (isLogin) {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log(userCredential.user.accessToken);
-        setAccessToken(userCredential.user.accessToken);
+        const token = userCredential.user.accessToken
+        console.log(token);
+        setAccessToken(token);
+        localStorage.setItem('token',token);
         alert("Login successfull...");
         setIsLoading(false);
         navigate('/profile')

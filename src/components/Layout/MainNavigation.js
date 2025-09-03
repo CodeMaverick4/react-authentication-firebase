@@ -10,6 +10,7 @@ const MainNavigation = () => {
   
   const handleLogout = ()=>{
     setAccessToken(null);
+    localStorage.removeItem('token');
     navigate("/")
   }
   return (
