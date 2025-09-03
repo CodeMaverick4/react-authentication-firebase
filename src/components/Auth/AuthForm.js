@@ -1,12 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 import classes from './AuthForm.module.css';
+import { tokenContext } from '../../context/tokenContext';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const { accessToken, setAccessToken } = useContext(tokenContext);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -23,9 +25,9 @@ const AuthForm = () => {
       setIsLoading(true);
       if (isLogin) {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log(userCredential.user.accessToken)
-
-        alert("Login successfull...")
+        console.log(userCredential.user.accessToken);
+        setAccessToken(userCredential.user.accessToken);
+        alert("Login successfull...");
         setIsLoading(false);
         return
       }
@@ -36,7 +38,7 @@ const AuthForm = () => {
         setIsLoading(false);
         return
       }
-      
+
     } catch (err) {
       setIsLoading(false);
       console.log(err.message)
