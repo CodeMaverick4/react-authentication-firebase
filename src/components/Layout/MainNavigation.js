@@ -5,12 +5,14 @@ import { useContext } from 'react';
 import { tokenContext } from '../../context/tokenContext';
 
 const MainNavigation = () => {
-  const {accessToken,setAccessToken} = useContext(tokenContext);
+  const { accessToken, setAccessToken } = useContext(tokenContext);
   const navigate = useNavigate();
-  
-  const handleLogout = ()=>{
+
+  const handleLogout = () => {
     setAccessToken(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('autoLogoutTimer');
+
     navigate("/")
   }
   return (

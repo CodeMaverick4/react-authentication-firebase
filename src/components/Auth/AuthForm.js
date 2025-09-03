@@ -31,6 +31,7 @@ const AuthForm = () => {
         console.log(token);
         setAccessToken(token);
         localStorage.setItem('token',token);
+        
         alert("Login successfull...");
         setIsLoading(false);
         navigate('/profile')
