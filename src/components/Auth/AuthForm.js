@@ -17,13 +17,14 @@ const AuthForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
-    const password = emailRef.current.value;
+    const password = passwordRef.current.value;
 
     try {
       setIsLoading(true);
       if (isLogin) {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        console.log(userCredential.user)
+        console.log(userCredential.user.accessToken)
+
         alert("Login successfull...")
         setIsLoading(false);
         return
